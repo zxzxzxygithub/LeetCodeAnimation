@@ -4,7 +4,7 @@ https://github.com/MisterBooo/LeetCodeAnimation/blob/master/notes/LeetCode%E7%AC
 
 **算法和注释：**
 
-class Solution{
+```class Solution{
     public:
         
         /**
@@ -32,3 +32,4 @@ class Solution{
             }
         }
 }
+```
