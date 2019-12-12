@@ -41,5 +41,51 @@ aabb
 最后所有的结果就是所有的加起来
 [a a b b ][a a bb][aa b b][aa bb]
 
+然后中间的过程求 abb的所有结果，求abb的所有结果等等，就可以递归的去求，递归出口的话，就是空串的所有子串
+就是一个空的 list 即可。
 
+```
+public List<List<String>> partition(String s){
+    return partitionHelper(s, 0);
+}
 
+private List<List<String>> partitionHelper(String s, int start){
+    // 递归出口，空字符串
+    if(start == s.length){
+        List<String> list = new ArrayList<>();
+        List<List<String>> ans = new ArrayList<>();
+        ans.add(list);
+        return ans;
+    }
+    List<List<String>> ans = new ArrayList<>();
+    for(int i = stat; i < s.length(); i++){
+        // 当前切割后是回文串才考虑
+        if(isPalindrome(s.subString(start, i+1))){
+            String left = s.subString(start, i+1);
+            // 遍历后面字符串的所有结果，将当前的字符串加到头部
+            for(List<String> l : partitionHelper(s, i+1)){
+                l.add(0,left);
+                ans.add(l);
+            }
+
+        }
+    }
+
+    return ans;
+
+}
+
+private boolean isPalindrome(String s){
+    int i = 0;
+    int j = s.length() -1;
+    while(i < j ){
+        if(s.charAt(i) != s.charAt(j)){
+            return false;
+        }
+        i++;
+        j++;
+    }
+    return true;
+}
+
+```
